@@ -33,17 +33,17 @@ module Rbword
 
     def read_folder
       files = Dir.entries(@folder_path).select { |file| File.file? File.join(@folder_path, file) }
-      files.select { |file| file.end_with? '.txt' }
+      files.select! { |file| file.end_with? '.txt' }
 
       files.each { |file| read_file(file) }
     end
 
     def add_stop_word(word)
-      @stop_list.insert(word)
+      @stop_list.add(word)
     end
 
     def remove_stop_word(word)
-      @stop_list.remove(word)
+      @stop_list.delete(word)
     end
 
     def set_folder(new_path)
