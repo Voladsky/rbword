@@ -1,53 +1,61 @@
 # frozen_string_literal: true
 
 require_relative "rbword/version"
-#require lemmatizer
+require "lemmatizer"
 
 module Rbword
   class Error < StandardError; end
-  # Your code goes here...
   class Analyzer
-    # folder_path: string
-    #words: Hash<string, int>
-    #lemmatizer: Lemmatizer
-    #stop_list: Set<string>()
-    #lemmatization: bool
-
     def initialize(folder_path: "./", stop_list: Set<string>(), lemmatization: false)
       @folder_path = folder_path
-      @stop_list = stop_words
+      @stop_list = stop_list
       @lemmatization = lemmatization
+      @lemmatizer = Lemmatizer.new
+      @words = Hash.new
     end
 
-    def read_file()
-      # TODO: Reads single file, splits words into @words, lemmatize if specified
+    def read_file(file)
+      words = File.read(file).split(' ')
+
+      words.each do |word|
+        if @stop_list.include? word
+          next
+        end
+
+        if @lemmatization
+          new_word = @lemmatizer.lemma(word)
+          @words[new_word] += 1
+        else
+          @words[word] += 1
+        end
+      end
     end
 
+    def read_folder
+      files = Dir.entries(@folder_path).select { |file| File.file? File.join(@folder_path, file) }
+      files.select { |file| file.end_with? '.txt' }
 
-    def read_folder()
-      # TODO: Reads files from folder located by folder_path
+      files.each { |file| read_file(file) }
     end
 
     def add_stop_word(word)
-      # TODO: Add stop word to @stop_list
+      @stop_list.insert(word)
     end
 
     def remove_stop_word(word)
-      # TODO: Remove stop word from @stop_list
+      @stop_list.remove(word)
     end
 
-    set_folder(new_path)
-      # TODO: Sets folder to read files from
+    def set_folder(new_path)
+      @folder_path = new_path
     end
 
     def get_count(word)
-      # TODO: Gets number of occurrences of a word given
+      @words[word]
     end
 
     def get_words()
-      # TODO: Get words in a text as an array
+      @words.keys
     end
-
   end
-
 end
