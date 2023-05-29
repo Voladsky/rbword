@@ -5,7 +5,8 @@ require_relative "lib/rbword/version"
 Gem::Specification.new do |spec|
   spec.name = "rbword"
   spec.version = Rbword::VERSION
-  spec.authors = ["Владислав Крылов"]
+  spec.authors = ["Vladislav Krylov", "Bogdan Gnatenko", "Dmitriy Anuchin",
+  "Grigoriy Mirosedi", "Vladimir Unkovskiy"]
   spec.email = ["krylov@sfedu.ru"]
 
   spec.summary = "Simple ruby gem for text analyzing"
