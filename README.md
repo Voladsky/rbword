@@ -1,23 +1,23 @@
 # Rbword
 
-Rbword - это библиотека на Ruby для анализа текстовых файлов. Она позволяет считывать файлы, создавать список стоп-слов, получать список всех слов в файле, а также получать количество вхождений каждого слова в файле. Также библиотека поддерживает лемматизацию слов.
+Rbword is a Ruby library for analyzing text files. It allows you to read files, create a list of stop words, get a list of all words in the file, and also get the count of each word occurrence in the file. The library also supports word lemmatization.
 
-## Инструкция по сборке
+## Installation
 
-Для установки Rbword необходимо иметь Ruby на компьютере. Если Ruby еще не установлен, его можно скачать с официального сайта https://www.ruby-lang.org/en/downloads/.
+To install Rbword, you need to have Ruby installed on your computer. If Ruby is not installed yet, you can download it from the official website https://www.ruby-lang.org/en/downloads/.
 
-После установки Ruby необходимо выполнить следующие шаги:
+After installing Ruby, you need to follow these steps:
 
-> + Создайте новый проект в вашей IDE (например, в Visual Studio Code).
-> + Создайте новый файл с расширением ".rb" и назовите его, например, "test.rb".
-> + Скопируйте код библиотеки Rbword в этот файл.
-> + Установите гем "lemmatizer" с помощью команды "gem install lemmatizer" в терминале вашей IDE.
+> + Create a new project in your IDE (for example in Visual Studio Code).
+> + Create a new file with the ".rb" extension and name it for example "test.rb".
+> + Copy the Rbword library code into this file.
+> + Install gem "lemmatizer" using the command "gem install lemmatizer" in your IDE terminal.
 
-## Использование
+## Usage
 
-Для использования Rbword необходимо создать объект класса Analyzer и вызывать его методы. 
+To use Rbword, you need to create an Analyzer class object and call its methods.
 
-### ✅ Создание объекта класса Analyzer и чтение файла:
+### ▪️ Creating an Analyzer class object and reading a file:
 
 ```ruby
 analyzer = Rbword::Analyzer.new
@@ -25,49 +25,49 @@ analyzer.read_file("text.txt")
 ```
 
 
-### ✅ Чтение всех файлов в заданной папке:
+### ▪️ Reading all files in a specified folder:
 
 ```ruby
 analyzer.read_folder
 ```
 
 
-### ✅ Добавление слова в список стоп-слов:
+### ▪️ Adding a word to the stop words list:
 
 ```ruby
 analyzer.add_stop_word("the")
 ```
 
 
-### ✅ Удаление слова из списка стоп-слов:
+### ▪️ Removing a word from the stop words list:
 
 ```ruby
 analyzer.remove_stop_word("a")
 ```
 
 
-### ✅ Изменение пути к папке с файлами:
+### ▪️ Changing the path to the folder with files:
 
 ```ruby
 analyzer.change_folder("./new_folder")
 ```
 
 
-### ✅ Получение количества вхождений слова:
+### ▪️ Getting the count of a word occurrence:
 
 ```ruby
 analyzer.occurrences("dog")
 ```
 
 
-### ✅ Получение списка всех слов:
+### ▪️ Getting a list of all words:
 
 ```ruby
 analyzer.words_list
 ```
 
 
-### ✅ Лемматизация слов (если при создании объекта был передан параметр lemmatization = true):
+### ▪️ Word lemmatization (if the lemmatization parameter was passed when creating the object):
 
 ```ruby
 analyzer.read_file("text.txt")
@@ -75,10 +75,10 @@ puts analyzer.words_list # ["cat", "run", "jumped"]
 ```
 
 
-## Авторы
+## Authors
 
-Rbword была создана командой разработчиков на Ruby: Владислав Крылов, Богдан Гнатенко, Дмитрий Анучин, Владимир Унковский, Григорий Мироседи.
+Rbword was created by a team of Ruby developers: Vladislav Krylov, Bogdan Gnatenko, Dmitry Anuchin, Vladimir Unkovsky, Grigory Mirocedi.
 
-## Лицензия
+## License
 
-Rbword распространяется под лицензией MIT. См. `LICENSE` для подробностей.
+Rbword is distributed under the MIT license. See `LICENSE` for details.
