@@ -1,37 +1,84 @@
 # Rbword
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rbword`. To experiment with that code, run `bin/console` for an interactive prompt.
+Rbword - это библиотека на Ruby для анализа текстовых файлов. Она позволяет считывать файлы, создавать список стоп-слов, получать список всех слов в файле, а также получать количество вхождений каждого слова в файле. Также библиотека поддерживает лемматизацию слов.
 
-TODO: Delete this and the text above, and describe your gem
+## Инструкция по сборке
 
-## Installation
+Для установки Rbword необходимо иметь Ruby на компьютере. Если Ruby еще не установлен, его можно скачать с официального сайта https://www.ruby-lang.org/en/downloads/.
 
-Install the gem and add to the application's Gemfile by executing:
+После установки Ruby необходимо выполнить следующие шаги:
 
-    $ bundle add rbword
+> + Создайте новый проект в вашей IDE (например, в Visual Studio Code).
+> + Создайте новый файл с расширением ".rb" и назовите его, например, "test.rb".
+> + Скопируйте код библиотеки Rbword в этот файл.
+> + Установите гем "lemmatizer" с помощью команды "gem install lemmatizer" в терминале вашей IDE.
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+## Использование
 
-    $ gem install rbword
+Для использования Rbword необходимо создать объект класса Analyzer и вызывать его методы. 
 
-## Usage
+### ✅ Создание объекта класса Analyzer и чтение файла:
 
-TODO: Write usage instructions here
+```ruby
+analyzer = Rbword::Analyzer.new
+analyzer.read_file("text.txt")
+```
 
-## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test-unit` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### ✅ Чтение всех файлов в заданной папке:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+analyzer.read_folder
+```
 
-## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rbword. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/rbword/blob/master/CODE_OF_CONDUCT.md).
+### ✅ Добавление слова в список стоп-слов:
 
-## License
+```ruby
+analyzer.add_stop_word("the")
+```
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-## Code of Conduct
+### ✅ Удаление слова из списка стоп-слов:
 
-Everyone interacting in the Rbword project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/rbword/blob/master/CODE_OF_CONDUCT.md).
+```ruby
+analyzer.remove_stop_word("a")
+```
+
+
+### ✅ Изменение пути к папке с файлами:
+
+```ruby
+analyzer.change_folder("./new_folder")
+```
+
+
+### ✅ Получение количества вхождений слова:
+
+```ruby
+analyzer.occurrences("dog")
+```
+
+
+### ✅ Получение списка всех слов:
+
+```ruby
+analyzer.words_list
+```
+
+
+### ✅ Лемматизация слов (если при создании объекта был передан параметр lemmatization = true):
+
+```ruby
+analyzer.read_file("text.txt")
+puts analyzer.words_list # ["cat", "run", "jumped"]
+```
+
+
+## Авторы
+
+Rbword была создана командой разработчиков на Ruby: Владислав Крылов, Богдан Гнатенко, Дмитрий Анучин, Владимир Унковский, Григорий Мироседи.
+
+## Лицензия
+
+Rbword распространяется под лицензией MIT. См. `LICENSE` для подробностей.
