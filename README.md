@@ -8,10 +8,11 @@ To install Rbword, you need to have Ruby installed on your computer. If Ruby is 
 
 After installing Ruby, you need to follow these steps:
 
-> + Create a new project in your IDE (for example in Visual Studio Code).
-> + Create a new file with the ".rb" extension and name it for example "test.rb".
-> + Copy the Rbword library code into this file.
-> + Install gem "lemmatizer" using the command "gem install lemmatizer" in your IDE terminal.
+> + Copy a repository writing ```$ git clone https://github.com/Voladsky/rbword.git``` in folder of your choice 
+> + Install gem "lemmatizer" using the command ```$ gem install lemmatizer``` in your IDE terminal.
+> + Write ```$ gem build rbword.gemspec```
+> + Write ```$ gem install ./rbword-x.x.x.gem``` (depending on your build version)  
+
 
 ## Usage
 
