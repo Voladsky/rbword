@@ -2,6 +2,7 @@
 
 require_relative "rbword/version"
 require "lemmatizer"
+require "set"
 
 module Rbword
   class Error < StandardError; end
@@ -22,16 +23,27 @@ module Rbword
         next if @stop_list.include? word
         if @lemmatization
           new_word = @lemmatizer.lemma(word)
-          @words[new_word] += 1
+          if @words.key? new_word
+            @words[new_word] += 1
+          else
+            @words[new_word] = 1
+          end
         else
-          @words[word] += 1
+          if @words.key? word
+            @words[word] += 1
+          else
+            @words[word] = 1
+          end
         end
       end
     end
 
+    attr_reader :folder_path
+
     def read_folder
-      files = Dir.entries(@folder_path).select { |file| File.file? File.join(@folder_path, file) }
+      files = Dir.entries(@folder_path).select { |file| File.file? @folder_path + "/" + file}
       files.select! { |file| file.end_with? ".txt" }
+      files.map! { |file| folder_path + "/" + file }
       files.each { |file| read_file(file) }
     end
 
@@ -43,12 +55,18 @@ module Rbword
       @stop_list.delete(word)
     end
 
+    attr_reader :stop_list
+
     def change_folder(new_path)
       @folder_path = new_path
     end
 
     def occurences(word)
-      @words[word]
+      if @words.key? word
+        @words[word]
+      else
+        0
+      end
     end
 
     def words_list
